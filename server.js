@@ -10,17 +10,28 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 // create schema
+// hello return string
+// random return non-nullable float, ! means non-nullable
+// rollThreeDice return array of integer, [] means array
 const schema = buildSchema(`
   type Query {
-    hello: String
+    hello: String,
+    random: Float!
+    rollThreeDice: [Int]
   }
 `);
 
 // root provider for function resolver
 const root = {
   hello: () => {
-    return 'Hello world!';
+    return 1;
   },
+  random: () => {
+    return Math.random();
+  },
+  rollThreeDice: () => {
+    return [1, 2, 3].map(_ => 1 + Math.floor(Math.random() * 6));
+  }
 }
 
 // use graphql in this express app
