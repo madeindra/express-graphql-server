@@ -16,7 +16,6 @@ npm start
 ```
 { hello }
 ```
-3. Click on play button
 
 ## Send Query with REST API
 1. Open Postman
@@ -30,3 +29,21 @@ npm start
 }
 ```
 6. Send request
+
+## Available query
+1. Hello
+```
+{ hello }
+```
+
+2. Random
+```
+{ random }
+```
+
+3. rollDice
+```
+{
+  rollDice(numDice: 3, numSides: 6)
+}
+```
