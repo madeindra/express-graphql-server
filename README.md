@@ -47,3 +47,13 @@ npm start
   rollDice(numDice: 3, numSides: 6)
 }
 ```
+
+PS: you can combine query, that what makes GraphQL cool!
+
+```
+{
+  hello,
+  random,
+  rollDice(numDice: 3, numSides: 6),
+}
+```
