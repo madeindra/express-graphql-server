@@ -10,10 +10,11 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 // create schema
+
 // hello return string
-// random return non-nullable float, ! means non-nullable
+// random return non-nullable float
 // rollDice take one non-nullable integer and one nullable integer as parameter
-// rollDice return array of integer, [] means array
+// rollDice return array of integer
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
