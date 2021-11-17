@@ -1,7 +1,7 @@
 // import
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
+const { buildSchema, GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLFloat, GraphQLList, GraphQLInt, GraphQLNonNull } = require('graphql');
 
 // read env
 const port = process.env.PORT || 4000;
@@ -14,13 +14,30 @@ const app = express();
 // random return non-nullable float, ! means non-nullable
 // rollDice take one non-nullable integer and one nullable integer as parameter
 // rollDice return array of integer, [] means array
-const schema = buildSchema(`
-  type Query {
-    hello: String,
-    random: Float!
-    rollDice(numDice: Int!, numSides: Int): [Int]
-  }
-`);
+const schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: 'Query',
+    fields: () => ({
+      hello: {
+        type: GraphQLString,
+      },
+      random: {
+        type: new GraphQLNonNull(GraphQLFloat),
+      },
+      rollDice: {
+        args: {
+          numDice: {
+            type: new GraphQLNonNull(GraphQLInt),
+          },
+          numSides: {
+            type: GraphQLInt
+          }
+        },
+        type: new GraphQLList(GraphQLInt),
+      }
+    })
+  })
+});
 
 // root provider for function resolver
 const root = {
